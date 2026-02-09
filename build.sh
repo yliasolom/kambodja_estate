@@ -3,9 +3,7 @@
 
 echo "Installing Python dependencies..."
 pip install --upgrade pip
-cd backend
 pip install -r requirements.txt
-cd ..
 
 echo "Attempting to build FAISS index..."
 cd backend
