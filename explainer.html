@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buying as a foreigner? - Villa Explainer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Back link -->
+        <a href="https://www.realestate.com.kh/boreys/borey-peng-huoth-the-star-platinum-mastery/5-bed-6-bath-villa-258405/" class="back-link">← Back to listing</a>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <!-- Photo Gallery / Carousel -->
+            <div class="photo-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop" alt="Villa - Main View" class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop" alt="Villa - Living Room" class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop" alt="Villa - Kitchen" class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop" alt="Villa - Bedroom" class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Villa - Exterior" class="carousel-slide">
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1)">‹</button>
+                    <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1)">›</button>
+                    
+                    <!-- Photo Counter -->
+                    <div class="photo-counter">
+                        <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail Navigation -->
+                <div class="carousel-thumbnails" id="carouselThumbnails">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=150&h=100&fit=crop" alt="Thumb 1" class="carousel-thumb active" onclick="goToSlide(0)">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=150&h=100&fit=crop" alt="Thumb 2" class="carousel-thumb" onclick="goToSlide(1)">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=150&h=100&fit=crop" alt="Thumb 3" class="carousel-thumb" onclick="goToSlide(2)">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=150&h=100&fit=crop" alt="Thumb 4" class="carousel-thumb" onclick="goToSlide(3)">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=100&fit=crop" alt="Thumb 5" class="carousel-thumb" onclick="goToSlide(4)">
+                </div>
+            </div>
+            
+            <div class="property-info">
+                <p class="property-meta">Villa · 5 bed, 6 bath · $575,000</p>
+                <a href="https://www.realestate.com.kh/boreys/borey-peng-huoth-the-star-platinum-mastery/" class="property-location">Borey Peng Huoth: The Star Platinum Mastery</a>
+            </div>
+            <div class="divider"></div>
+            <h1 class="main-title">🌍 Buying as a foreigner?</h1>
+            <p class="subtitle">See how this property is usually purchased</p>
+        </div>
+
+        <!-- Questions Section -->
+        <div class="questions-section">
+            <h2 class="section-title">Choose what you want to know:</h2>
+            <div class="questions-grid">
+                <button class="question-btn" data-question="can_i_own">
+                    ❓ Can I own this villa as a foreigner?
+                </button>
+                <button class="question-btn" data-question="lease_works">
+                    🏠 How does the land lease work?
+                </button>
+                <button class="question-btn" data-question="is_safe">
+                    ✅ Is this legal and safe?
+                </button>
+                <button class="question-btn" data-question="costs">
+                    💰 What are the costs involved?
+                </button>
+            </div>
+            
+            <!-- Custom Question Input -->
+            <div class="custom-question">
+                <p class="custom-question-label">Or ask your own question:</p>
+                <div class="custom-question-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="customQuestionInput" 
+                        class="custom-question-input" 
+                        placeholder="e.g., Can I get a mortgage for this property?"
+                    >
+                    <button class="custom-question-btn" onclick="askCustomQuestion()">
+                        Ask →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Answer Section -->
+        <div id="answerSection" class="answer-section" style="display: none;">
+            <div class="answer-content">
+                <h3 class="answer-question" id="answerQuestion"></h3>
+                <div class="divider-small"></div>
+                <div class="answer-text" id="answerText"></div>
+                <button class="close-btn" onclick="closeAnswer()">✕ Close</button>
+            </div>
+        </div>
+
+        <!-- Other Questions (appears after first answer) -->
+        <div id="otherQuestions" class="other-questions" style="display: none;">
+            <h2 class="section-title">Other questions you might have:</h2>
+            <ul class="questions-list">
+                <li><a href="#" onclick="askQuestion('lease_works'); return false;">How does the land lease work?</a></li>
+                <li><a href="#" onclick="askQuestion('is_safe'); return false;">Is this legal and safe?</a></li>
+                <li><a href="#" onclick="askQuestion('costs'); return false;">What are the costs involved?</a></li>
+            </ul>
+        </div>
+
+        <!-- Good to Know Section -->
+        <div class="info-box">
+            <h3 class="info-title">💡 Good to know</h3>
+            <p>Hundreds of foreigners own villas in Cambodia using long-term leasehold structures. This is a well-established, legal method.</p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to discuss this villa?</h2>
+            <p class="cta-text">Contact the agent to discuss this property, arrange a viewing, or get answers to your specific questions.</p>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Request Details</h3>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <input type="text" placeholder="Name" class="form-input" required>
+                        <input type="tel" placeholder="Phone" class="form-input" required>
+                    </div>
+                    <input type="email" placeholder="Please enter your email address" class="form-input" required>
+                    <textarea placeholder="Write message to agent here" class="form-textarea" rows="4"></textarea>
+                    <button type="submit" class="btn-submit">Submit details</button>
+                </form>
+                
+                <div class="contact-divider">Or contact us via</div>
+                
+                <!-- Contact Methods -->
+                <div class="contact-methods">
+                    <a href="tel:+85512345678" class="contact-btn">
+                        <span class="contact-icon">📞</span>
+                        <span>Phone</span>
+                    </a>
+                    <a href="https://t.me/youragent" class="contact-btn" target="_blank">
+                        <span class="contact-icon">📱</span>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://wa.me/85512345678" class="contact-btn" target="_blank">
+                        <span class="contact-icon">💬</span>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="#" class="contact-btn">
+                        <span class="contact-icon">💚</span>
+                        <span>WeChat</span>
+                    </a>
+                </div>
+            </div>
+            
+            <a href="https://www.realestate.com.kh/boreys/borey-peng-huoth-the-star-platinum-mastery/5-bed-6-bath-villa-258405/" class="link-back">← Back to full listing</a>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <p><strong>⚠️ Important</strong></p>
+            <p>This information is for general guidance only. Always consult a qualified lawyer before buying property in Cambodia.</p>
+        </div>
+    </div>
+
+    <script src="data/answers.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
