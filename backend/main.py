@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse, HTMLResponse
 from pydantic import BaseModel
 from typing import Optional
+from pathlib import Path
 import asyncio
 import json
 
@@ -15,6 +16,9 @@ app = FastAPI(
     description="API for explaining property ownership to foreign buyers",
     version="2.0.0"
 )
+
+# Get paths
+BASE_DIR = Path(__file__).parent.parent
 
 # CORS middleware to allow frontend calls
 app.add_middleware(
@@ -37,15 +41,24 @@ class QuestionResponse(BaseModel):
     
 @app.get("/")
 async def root():
-    """Root endpoint"""
-    return {
-        "message": "Cambodia Property Explainer API",
-        "version": "2.0.0",
-        "endpoints": {
-            "ask": "/api/ask",
-            "docs": "/docs"
-        }
-    }
+    """Serve the main HTML page"""
+    html_path = BASE_DIR / "index.html"
+    return FileResponse(html_path, media_type="text/html")
+
+@app.get("/css/{file_path:path}")
+async def serve_css(file_path: str):
+    """Serve CSS files"""
+    return FileResponse(BASE_DIR / "css" / file_path, media_type="text/css")
+
+@app.get("/js/{file_path:path}")
+async def serve_js(file_path: str):
+    """Serve JavaScript files"""
+    return FileResponse(BASE_DIR / "js" / file_path, media_type="application/javascript")
+
+@app.get("/data/{file_path:path}")
+async def serve_data(file_path: str):
+    """Serve data files"""
+    return FileResponse(BASE_DIR / "data" / file_path, media_type="application/javascript")
 
 @app.post("/api/ask/stream")
 async def ask_question_stream(request: QuestionRequest):
