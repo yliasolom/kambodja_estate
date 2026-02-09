@@ -1,12 +1,16 @@
-пше// Main script for explainer page interactivity
+// Main script for explainer page interactivity
 
 let currentQuestion = null;
 let hasShownAnswer = false;
 let currentSlideIndex = 0;
 
 // Configuration
-const API_URL = '/api/ask';  // Same domain
-const API_STREAM_URL = '/api/ask/stream';  // Same domain
+const API_URL = window.location.hostname === 'localhost' && window.location.port === '8000'
+    ? 'http://localhost:8001/api/ask'
+    : '/api/ask';
+const API_STREAM_URL = window.location.hostname === 'localhost' && window.location.port === '8000'
+    ? 'http://localhost:8001/api/ask/stream'
+    : '/api/ask/stream';
 const PROPERTY_URL = 'https://www.realestate.com.kh/boreys/borey-peng-huoth-the-star-platinum-mastery/5-bed-6-bath-villa-258405/';
 const USE_STREAMING = true;  // Enable streaming
 
