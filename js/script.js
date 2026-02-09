@@ -1,4 +1,4 @@
-// Main script for explainer page interactivity
+пше// Main script for explainer page interactivity
 
 let currentQuestion = null;
 let hasShownAnswer = false;
@@ -393,6 +393,7 @@ async function askCustomQuestion() {
         
     } catch (error) {
         console.error('Error asking custom question:', error);
+        console.error('Full error:', error.message, error.stack);
         answerText.innerHTML = '<p style="color: #DC2626;">Sorry, there was an error processing your question. Please try again or contact the agent directly.</p>';
     } finally {
         // Re-enable input
@@ -454,6 +455,8 @@ async function streamCustomAnswer(question) {
         }
         
     } catch (error) {
+        console.error('Error in streamCustomAnswer:', error);
+        console.error('Error details:', error.message, error.stack);
         throw error;
     }
 }
